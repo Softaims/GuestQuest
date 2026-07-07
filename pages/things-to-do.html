@@ -187,6 +187,20 @@
 
                         <div id="map"></div>
 
+                        <div class="map-controls">
+                            <button class="map-ctrl-btn" id="mapExpand" title="Fullscreen">
+                                <i class="bi bi-arrows-fullscreen"></i>
+                            </button>
+                            <div class="map-ctrl-divider"></div>
+                            <button class="map-ctrl-btn" id="mapZoomIn" title="Zoom in">
+                                <i class="bi bi-plus-lg"></i>
+                            </button>
+                            <div class="map-ctrl-divider"></div>
+                            <button class="map-ctrl-btn" id="mapZoomOut" title="Zoom out">
+                                <i class="bi bi-dash-lg"></i>
+                            </button>
+                        </div>
+
                     </div>
 
                 </div>
@@ -385,7 +399,78 @@
 
     </div>
 
+    <!-- detail popup modal -->
 
+    <div class="modal fade" id="detailModal" tabindex="-1">
+
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+
+            <div class="modal-content detail-modal">
+
+                <button class="detail-close" data-bs-dismiss="modal">
+                    <i class="bi bi-x-lg"></i>
+                </button>
+
+                <div class="detail-gallery" id="detailGallery"></div>
+
+                <div class="detail-body">
+
+                    <div class="row g-4">
+
+                        <div class="col-lg-7">
+
+                            <h4 id="detailTitle"></h4>
+
+                            <div class="rating" id="detailRating"></div>
+
+                            <p id="detailDescription"></p>
+
+                            <div class="price-from">
+                                <small>Price</small>
+                                <span class="price" id="detailPrice"></span>
+                            </div>
+
+                        </div>
+
+                        <div class="col-lg-5">
+
+                            <h6>Address, Campsite contact information</h6>
+
+                            <div class="detail-contact-row">
+                                <span class="contact-icon"><i class="bi bi-geo-alt"></i></span>
+                                <span id="detailAddress"></span>
+                            </div>
+
+                            <div class="detail-contact-row">
+                                <span class="contact-icon"><i class="bi bi-telephone"></i></span>
+                                <span id="detailPhone"></span>
+                            </div>
+
+                            <div class="detail-contact-row">
+                                <span class="contact-icon"><i class="bi bi-envelope"></i></span>
+                                <span id="detailEmail"></span>
+                            </div>
+
+                            <a href="#" class="btn-website" id="detailWebsite">
+                                View Website
+                            </a>
+
+                            <a href="#" class="btn-full-detail">
+                                View Full Detail
+                                <i class="bi bi-arrow-right"></i>
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
 
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
@@ -404,10 +489,6 @@
             scrollWheelZoom: true
         }).setView([39.82, -98.57], 4);
 
-        L.control.zoom({
-            position: "bottomright"
-        }).addTo(map);
-
         L.tileLayer(
             'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',
             {
@@ -416,14 +497,79 @@
             }
         ).addTo(map);
 
+        // custom floating zoom / fullscreen controls
+        $("#mapZoomIn").click(() => map.zoomIn());
+        $("#mapZoomOut").click(() => map.zoomOut());
+        $("#mapExpand").click(function () {
+
+            const wrapper = document.querySelector(".map-wrapper");
+
+            if (!document.fullscreenElement) {
+                wrapper.requestFullscreen();
+            } else {
+                document.exitFullscreen();
+            }
+
+        });
+
+        document.addEventListener("fullscreenchange", () => {
+
+            const icon = document.querySelector("#mapExpand i");
+            icon.className = document.fullscreenElement
+                ? "bi bi-fullscreen-exit"
+                : "bi bi-arrows-fullscreen";
+
+            setTimeout(() => map.invalidateSize(), 200);
+
+        });
+
         const orangeIcon = L.divIcon({
             className: "map-pin",
-            html: '<i class="bi bi-geo-alt-fill"></i>',
-            iconSize: [32, 32],
-            iconAnchor: [16, 32]
+            html: '<span class="pin-circle"><i class="bi bi-geo-alt-fill"></i></span>',
+            iconSize: [34, 34],
+            iconAnchor: [17, 17],
+            popupAnchor: [0, -20]
         });
 
         let mapMarkers = [];
+
+        function popupHTML(place) {
+
+            const tag = place.tags[0];
+
+            return `
+                <div class="map-popup">
+                    <div class="popup-image">
+                        <img src="${place.image}" alt="${place.title}">
+                        <span class="popup-badge"><i class="bi ${tagIcons[tag] || 'bi-geo'}"></i>${tag}</span>
+                        <button class="popup-close"><i class="bi bi-x-lg"></i></button>
+                    </div>
+                    <div class="popup-body">
+                        <div class="popup-title-row">
+                            <h6>${place.title}</h6>
+                            <div class="popup-rating">
+                                <i class="bi bi-star-fill"></i>
+                                ${place.rating} <small>(${place.reviews})</small>
+                            </div>
+                        </div>
+                        <div class="popup-location">
+                            <i class="bi bi-geo-alt"></i>
+                            ${place.address}
+                        </div>
+                        <p>${place.description}</p>
+                        <div class="popup-footer">
+                            <div class="price-from">
+                                <small>From</small>
+                                <span class="price">$${place.price}.00</span>
+                            </div>
+                            <button class="request-btn">
+                                <span class="radio-dot"></span>
+                                Request info
+                            </button>
+                        </div>
+                    </div>
+                </div>`;
+        }
 
         function renderMapMarkers(items) {
 
@@ -436,13 +582,15 @@
 
                 const marker = L.marker([place.lat, place.lng], { icon: orangeIcon }).addTo(map);
 
-                marker.bindPopup(`
-                    <div style="width:200px">
-                        <img src="${place.image}" style="width:100%;border-radius:12px">
-                        <h6 style="margin-top:10px">${place.title}</h6>
-                        <small>${place.address}</small>
-                    </div>
-                `);
+                marker.bindPopup(popupHTML(place), {
+                    closeButton: false,
+                    maxWidth: 230,
+                    className: "custom-popup"
+                });
+
+                marker.on("popupopen", (e) => {
+                    $(e.popup.getElement()).find(".popup-close").on("click", () => map.closePopup());
+                });
 
                 mapMarkers.push(marker);
                 bounds.push([place.lat, place.lng]);

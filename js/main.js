@@ -133,7 +133,15 @@ const destinations = spots.map((spot, i) => ({
     price: 100 + (i * 7) % 200,
     rating: (4.2 + (i % 6) * 0.1).toFixed(1),
     reviews: 80 + (i * 13) % 150,
+    phone: `(${200 + (i * 11) % 700}) 555-${String(1000 + (i * 37) % 9000).slice(0, 4)}`,
+    email: `info@${spot.title.toLowerCase().replace(/[^a-z0-9]+/g, "")}.com`,
+    website: `www.${spot.title.toLowerCase().replace(/[^a-z0-9]+/g, "")}.com`,
     image: destinationImages[i % destinationImages.length],
+    gallery: [
+        destinationImages[i % destinationImages.length],
+        destinationImages[(i + 4) % destinationImages.length],
+        destinationImages[(i + 8) % destinationImages.length]
+    ],
     tags: [allTags[i % allTags.length], allTags[(i + 3) % allTags.length]],
     lat: spot.lat,
     lng: spot.lng
@@ -150,7 +158,7 @@ function cardHTML(place) {
     ).join("");
 
     return `
-    <div class="destination-card">
+    <div class="destination-card" data-id="${place.id}">
         <div class="card-image">
             <img src="${place.image}" alt="${place.title}">
         </div>
@@ -254,5 +262,43 @@ $(document).on("click", ".page-btn:not(.disabled)", function () {
     $('html, body').animate({
         scrollTop: $("#resultsContainer").offset().top - 130
     }, 300);
+
+});
+
+/*==================================================
+DETAIL MODAL
+==================================================*/
+
+function openDetailModal(place) {
+
+    const gallery = place.gallery;
+
+    $("#detailGallery").html(`
+        <div class="gallery-main"><img src="${gallery[0]}" alt="${place.title}"></div>
+        <div class="gallery-sub"><img src="${gallery[1]}" alt="${place.title}"></div>
+        <div class="gallery-sub"><img src="${gallery[2]}" alt="${place.title}"></div>
+    `);
+
+    $("#detailTitle").text(place.title);
+    $("#detailRating").html(`
+        <i class="bi bi-star-fill"></i>
+        ${place.rating} <small>(${place.reviews} reviews)</small>
+    `);
+    $("#detailDescription").text(place.description);
+    $("#detailPrice").text(`$${place.price}.00`);
+    $("#detailAddress").text(place.address);
+    $("#detailPhone").text(place.phone);
+    $("#detailEmail").text(place.email);
+    $("#detailWebsite").text(place.website).attr("href", `https://${place.website}`);
+
+    new bootstrap.Modal(document.getElementById("detailModal")).show();
+}
+
+$(document).on("click", ".destination-card", function () {
+
+    const id = parseInt($(this).data("id"));
+    const place = destinations.find(d => d.id === id);
+
+    if (place) openDetailModal(place);
 
 });
