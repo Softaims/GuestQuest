@@ -1,3 +1,52 @@
-h1 {
-    font-size: 28px;
+:root {
+    --primary: #F49363;
+    --dark: #222;
+    --text: #666;
+    --light: #fff;
+    --border: #ECECEC;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: #fff;
+    color: #222;
+}
+
+img {
+    max-width: 100%;
+}
+
+a {
+    text-decoration: none;
+}
+
+.container {
+    max-width: 1280px;
+}
+
+/* top annoucment bar */
+.top-bar {
+    height: 52px;
+    background: #F49363;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+/* top annoucment bar responsivness */
+@media(max-width:768px) {
+
+    .top-bar {
+
+        display: none;
+
+    }
 }
