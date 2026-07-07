@@ -60,9 +60,7 @@ $(function () {
 
 });
 
-/*==================================================
-DATA
-==================================================*/
+/* data */
 
 const tagIcons = {
     "National Parks": "bi-tree",
@@ -140,16 +138,16 @@ const destinations = spots.map((spot, i) => ({
     gallery: [
         destinationImages[i % destinationImages.length],
         destinationImages[(i + 4) % destinationImages.length],
-        destinationImages[(i + 8) % destinationImages.length]
+        destinationImages[(i + 8) % destinationImages.length],
+        destinationImages[(i + 2) % destinationImages.length],
+        destinationImages[(i + 6) % destinationImages.length]
     ],
     tags: [allTags[i % allTags.length], allTags[(i + 3) % allTags.length]],
     lat: spot.lat,
     lng: spot.lng
 }));
 
-/*==================================================
-RENDER
-==================================================*/
+/* render */
 
 function cardHTML(place) {
 
@@ -210,9 +208,7 @@ function renderCards() {
     renderMapMarkers(items);
 }
 
-/*==================================================
-PAGINATION
-==================================================*/
+/* pagination */
 
 function renderPagination() {
 
@@ -265,9 +261,7 @@ $(document).on("click", ".page-btn:not(.disabled)", function () {
 
 });
 
-/*==================================================
-DETAIL MODAL
-==================================================*/
+/* detail modal */
 
 function openDetailModal(place) {
 
@@ -290,6 +284,7 @@ function openDetailModal(place) {
     $("#detailPhone").text(place.phone);
     $("#detailEmail").text(place.email);
     $("#detailWebsite").text(place.website).attr("href", `https://${place.website}`);
+    $("#detailFullLink").attr("href", `/pages/destination-detail.html?id=${place.id}`);
 
     new bootstrap.Modal(document.getElementById("detailModal")).show();
 }

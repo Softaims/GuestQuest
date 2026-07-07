@@ -420,8 +420,7 @@ a {
 .search-tabs {
 
     display: flex;
-    justify-content: center;
-
+    justify-content: space-between;
 }
 
 .search-tab {
@@ -581,9 +580,7 @@ a {
 
 
 
-/*=============================
-PREMIUM FILTER MODAL
-==============================*/
+/* filter modal */
 
 .filter-modal {
 
@@ -829,9 +826,7 @@ PREMIUM FILTER MODAL
 
 /* grid secrtion thing to do */
 
-/*==================================
-RESULT SECTION
-==================================*/
+/* results section */
 
 .results-section {
 
