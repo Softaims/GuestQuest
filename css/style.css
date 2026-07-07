@@ -150,3 +150,168 @@ a {
 .hero h1 span {
     display: block;
 }
+
+/* Hero Search
+ */
+.hero-search {
+    width: 820px;
+    margin: 45px auto 0;
+}
+
+
+.search-tabs {
+    display: flex;
+    width: 540px;
+    margin: auto;
+    background: #fff;
+    border-radius: 16px 16px 0 0;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, .12);
+}
+
+.tab-btn {
+    flex: 1;
+    height: 54px;
+    border: none;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    font-size: 15px;
+    font-weight: 500;
+    color: #555;
+   transition: .3s;
+    border-right: 1px solid #ECECEC;
+}
+
+.tab-btn:last-child {
+    border-right: none;
+}
+
+.tab-btn i {
+    font-size: 16px;
+}
+
+.tab-btn.active {
+    background: #F49363;
+    color: #111;
+    font-weight: 600;
+}
+
+.tab-btn:hover {
+    background: #fafafa;
+}
+
+.tab-btn.active:hover {
+    background: #F49363;
+}
+
+
+.search-card {
+
+    background: #fff;
+
+    border-radius: 24px;
+
+    padding: 18px;
+
+    margin-top: -1px;
+
+    display: flex;
+
+    align-items: center;
+
+    box-shadow: 0 15px 45px rgba(0, 0, 0, .18);
+
+}
+
+/* Search Input */
+
+.search-input {
+
+    flex: 1;
+
+    height: 62px;
+
+    border: 1px solid #ECECEC;
+
+    border-radius: 14px;
+
+    display: flex;
+
+    align-items: center;
+
+    padding: 0 20px;
+
+}
+
+.search-input i {
+
+    color: #888;
+
+    font-size: 20px;
+
+    margin-right: 14px;
+
+}
+
+.search-input input {
+
+    width: 100%;
+
+    border: none;
+
+    outline: none;
+
+    font-size: 15px;
+
+}
+
+.search-input input::placeholder {
+
+    color: #A3A3A3;
+
+}
+
+/* Search Button */
+
+.search-btn {
+
+    width: 150px;
+
+    height: 62px;
+
+    margin-left: 15px;
+
+    border: none;
+
+    border-radius: 14px;
+
+    background: #F49363;
+
+    font-weight: 600;
+
+    transition: .3s;
+
+}
+
+.search-btn:hover {
+
+    background: #eb8755;
+
+}
+
+/* Bottom Text */
+
+.hero-bottom-text {
+
+    margin-top: 30px;
+
+    color: #F49363;
+
+    font-size: 18px;
+
+    font-weight: 600;
+
+}

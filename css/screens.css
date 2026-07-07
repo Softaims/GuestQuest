@@ -25,3 +25,50 @@
     }
 
 }
+
+@media (max-width:991px) {
+
+    .hero-search {
+        width: 80%;
+    }
+
+    .search-tabs {
+        width: 100%;
+        flex-wrap: wrap;
+    }
+
+    .tab-btn {
+        flex: 0 0 50%;
+        border-bottom: 1px solid #ECECEC;
+    }
+
+    .search-card {
+        flex-direction: column;
+        border-top-right-radius: 0;
+        border-top-left-radius: 0;
+    }
+
+    .search-input {
+        width: 100%;
+
+    }
+
+    .search-btn {
+        width: 100%;
+        margin: 15px 0 0
+    }
+
+}
+
+@media(max-width:576px) {
+
+    .search-tabs {
+        flex-direction: column;
+    }
+
+    .tab-btn {
+        width: 100%;
+        flex: 100%;
+    }
+
+}

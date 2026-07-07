@@ -1,3 +1,11 @@
 $(function () {
-    console.log("Hello GuestQuest Demo");
+
+    $(".tab-btn").click(function () {
+
+        $(".tab-btn").removeClass("active");
+
+        $(this).addClass("active");
+
+    });
+
 });
