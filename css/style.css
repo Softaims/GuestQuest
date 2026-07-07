@@ -928,36 +928,30 @@ LIST
 
 }
 
-/***************************
-MAP
-***************************/
-
 .map-wrapper {
 
     position: sticky;
 
-    top: 110px;
+    top: 120px;
+
+    height: 700px;
+
+    border-radius: 28px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 25px 80px rgba(0, 0, 0, .08);
 
 }
 
 #map {
 
-    height: 650px;
+    width: 100%;
 
-    border-radius: 26px;
-
-    overflow: hidden;
-
-    background: #f4f4f4;
-
-    box-shadow:
-        0 20px 60px rgba(0, 0, 0, .08);
+    height: 100%;
 
 }
-
-/***************************
-GRID MODE
-***************************/
 
 .results-grid {
 
@@ -969,9 +963,6 @@ GRID MODE
 
 }
 
-/***************************
-RESPONSIVE
-***************************/
 
 @media(max-width:991px) {
 
@@ -1006,5 +997,6 @@ RESPONSIVE
         align-items: flex-start;
 
     }
+
 
 }
