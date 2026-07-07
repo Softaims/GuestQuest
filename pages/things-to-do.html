@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GuestQuest Demo</title>
+    <!-- Bootstrap and icons and font -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/screens.css">
+</head>
+
+<body>
+    <!-- navbar  -->
+    <div class="top-bar">
+        Discover new destinations, places to stay and things to do on your next vacation.
+    </div>
+    <nav class="navbar navbar-expand-lg bg-white py-3">
+        <div class="container">
+            <a class="navbar-brand" href="/#">
+                <img src="/assets/img/logo.png" alt="GuestQuest Logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav"
+                aria-controls="nav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end px-4 navbar-nav-scroll" id="nav">
+                <ul class="navbar-nav gap-lg-4">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Destination</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Blogs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact Us</a>
+                    </li>
+                </ul>
+            </div>
+
+
+            <div class="d-none d-lg-flex gap-3">
+                <a href="#" class="btn btn-request">
+                    Request Guide
+                </a>
+                <a href="#" class="btn btn-claim ">
+                    <i class="bi bi-person"></i>
+                    Claim Your Ad
+                </a>
+            </div>
+
+        </div>
+    </nav>
+
+    <!-- hero section -->
+    <div class="hero-things-to-do">
+        <h1>Discover new destinations, places to stay and things to do on your next vacation.</h1>
+        <div class="things-search-wrapper">
+
+            <div class="search-tabs">
+
+                <button class="search-tab">
+                    <i class="bi bi-geo-alt"></i>
+                    Destinations
+                </button>
+
+                <button class="search-tab">
+                    <i class="bi bi-building"></i>
+                    Hotels
+                </button>
+
+                <button class="search-tab">
+                    <i class="bi bi-house-door"></i>
+                    Rentals
+                </button>
+
+                <button class="search-tab active">
+                    <i class="bi bi-compass"></i>
+                    Things to do
+                </button>
+
+            </div>
+
+            <!-- Search Box -->
+            <div class="search-box">
+
+
+                <button class="filter-btn" data-bs-toggle="modal" data-bs-target="#filterModal">
+
+                    <i class="bi bi-sliders"></i>
+
+                    Filters
+
+                    <span class="filter-count">8</span>
+
+                </button>
+
+
+                <div class="search-input">
+
+                    <i class="bi bi-search"></i>
+
+                    <input type="text" placeholder="Enter a city, state, country or region.">
+
+                </div>
+                <button class="search-btn things-search-btn">
+
+                    Search
+
+                </button>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- GRID section -->
+
+    <section class="results-section py-5">
+
+        <div class="container">
+
+
+            <div class="results-header">
+
+                <div class="results-count">
+
+                    <h5>
+                        <span id="resultCount">107</span> Search Result found
+                    </h5>
+
+                </div>
+
+                <div class="view-switcher">
+
+                    <button class="view-btn active" data-view="list">
+
+                        <i class="bi bi-list-ul"></i>
+
+                    </button>
+
+                    <button class="view-btn" data-view="grid">
+
+                        <i class="bi bi-grid-3x3-gap-fill"></i>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="row g-4">
+
+                <!-- LEFT -->
+
+                <div class="col-lg-7">
+
+                    <div id="resultsContainer" class="results-list">
+
+                        <!-- JS Renders Here -->
+
+                    </div>
+
+                </div>
+
+                <!-- RIGHT -->
+
+                <div class="col-lg-5">
+
+                    <div class="map-wrapper">
+
+                        <div id="map"></div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+
+
+
+
+
+
+    <!-- footer -->
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-logo">
+
+                <img src="/assets/img/logo.png" alt="GuestQuest">
+                <p>
+                    Discover new destinations, places to stay and things to do on your next vacation.
+                </p>
+            </div>
+            <hr>
+
+            <div class="row gy-5">
+                <div class="col-lg-4">
+                    <p class="footer-description">
+                        Discover family-friendly destinations, local favorites,
+                        and unique stays across the U.S. We connect travelers
+                        with trusted partners—no booking fees or hidden markups.
+                        <a href="#">Learn more about GuestQuest</a>
+                    </p>
+                </div>
+
+                <div class="col-6 col-lg-2">
+                    <h6>About</h6>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Our Partners</a></li>
+                        <li><a href="#">How it works</a></li>
+                        <li><a href="#">Website Terms</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-6 col-lg-2">
+                    <h6>Search</h6>
+                    <ul>
+
+                        <li><a href="#">Destinations</a></li>
+                        <li><a href="#">Hotels</a></li>
+                        <li><a href="#">Rentals</a></li>
+                        <li><a href="#">Things to do</a></li>
+                    </ul>
+
+                </div>
+
+                <div class="col-6 col-lg-2">
+
+                    <h6>Explore</h6>
+                    <ul>
+                        <li><a href="#">Request Guides</a></li>
+                        <li><a href="#">Blogs</a></li>
+
+                    </ul>
+                </div>
+
+                <div class="col-6 col-lg-2">
+                    <h6>Partners</h6>
+                    <ul>
+                        <li><a href="#">Login</a></li>
+                        <li><a href="#">Register</a></li>
+                        <li><a href="#">Partner Terms</a></li>
+                        <li><a href="#">Partner Privacy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
+            <div class="copyright">
+                Copyright © 2026 GuestQuest, Inc. All rights reserved.
+            </div>
+        </div>
+
+    </footer>
+
+    <!-- popup modal -->
+
+    <div class="modal fade" id="filterModal" tabindex="-1">
+
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+
+            <div class="modal-content filter-modal">
+
+                <!-- Header -->
+
+                <div class="filter-header">
+
+                    <div>
+
+                        <h4>Apply Filters</h4>
+
+                        <a href="#" id="clearFilters">
+                            <i class="bi bi-x-lg"></i>
+                            Clear Filter
+                        </a>
+
+                    </div>
+
+                    <button class="close-filter" data-bs-dismiss="modal">
+
+                        <i class="bi bi-x"></i>
+
+                    </button>
+
+                </div>
+
+                <!-- Body -->
+
+                <div class="filter-body">
+
+                    <div class="filter-section">
+
+                        <h6>Attraction Type</h6>
+
+                        <div class="chips">
+
+                            <button class="chip active">
+                                <span class="radio"></span>
+                                All Attraction Types
+                            </button>
+
+                            <button class="chip">
+                                <span class="radio"></span>
+                                National Parks
+                            </button>
+
+                            <button class="chip">
+                                <span class="radio"></span>
+                                State Parks
+                            </button>
+
+                            <button class="chip">
+                                <span class="radio"></span>
+                                Local Parks
+                            </button>
+
+                            <button class="chip">
+                                <span class="radio"></span>
+                                Wildlife Areas
+                            </button>
+
+                            <button class="chip">
+                                <span class="radio"></span>
+                                Nature Centre
+                            </button>
+
+                            <button class="chip">
+                                <span class="radio"></span>
+                                Botanical Gardens
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- Footer -->
+
+                <div class="filter-footer">
+
+                    <button class="btn-cancel" data-bs-dismiss="modal">
+
+                        Cancel
+
+                    </button>
+
+                    <button class="btn-apply">
+
+                        Apply Filter
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/script.js"></script>
+    <!-- map cdn js  -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+</body>
+
+</html>
