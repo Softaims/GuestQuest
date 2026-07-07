@@ -49,7 +49,7 @@ a {
 }
 
 .navbar-brand img {
-    height: 58px;
+    height: 42px;
 }
 
 .nav-link {
@@ -79,23 +79,31 @@ a {
 }
 
 .btn-request {
-    border: 1px solid #ddd;
-    padding: 14px 28px;
-    border-radius: 14px;
+    border: 1px solid #0000001F;
+    padding: 15px 16px;
+    border-radius: 10px;
     font-weight: 600;
 }
 
 .btn-request:hover {
     background: #fafafa;
+    border-color: #F49363;
+
 }
 
 .btn-claim {
     background: var(--primary);
-    padding: 14px 30px;
-    border-radius: 14px;
+    padding: 15px 16px;
+    border-radius: 10px;
     font-weight: 600;
     color: #111;
+    gap: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: nowrap;
 }
+
 
 .btn-claim:hover {
     background: #ea8553 !important;
@@ -110,7 +118,7 @@ a {
 
 .hero-wrapper {
     height: 540px;
-    border-radius: 45px;
+    border-radius: 50px;
     overflow: hidden;
     position: relative;
     background: url("../assets/img/bg_hero.png") center center/cover;
@@ -121,7 +129,7 @@ a {
     position: absolute;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, .40);
+    background: rgba(0, 0, 0, .60);
 }
 
 .hero-content {
@@ -135,16 +143,18 @@ a {
 }
 
 .location {
-    font-size: 24px;
-    color: #fff;
-    margin-bottom: 18px;
+    font-size: 16px;
+    color: #FFFFFFCC;
+    margin-bottom: 9px;
+    line-height: 22px;
+    font-weight: 400;
 }
 
 .hero h1 {
-    font-size: 68px;
-    font-weight: 800;
-    line-height: 1.1;
+    font-size: 44px;
+    font-weight: 600;
     color: #fff;
+    line-height: 44px;
 }
 
 .hero h1 span {
@@ -155,12 +165,13 @@ a {
  */
 .hero-search {
     width: 820px;
-    margin: 45px auto 0;
+    margin: 42px auto 0;
 }
 
 
 .search-tabs {
     display: flex;
+    z-index: 1;
     width: 540px;
     margin: auto;
     background: #fff;
@@ -181,7 +192,7 @@ a {
     font-size: 15px;
     font-weight: 500;
     color: #555;
-   transition: .3s;
+    transition: .3s;
     border-right: 1px solid #ECECEC;
 }
 
@@ -209,63 +220,41 @@ a {
 
 
 .search-card {
-
     background: #fff;
-
-    border-radius: 24px;
-
+    z-index: 10;
+    border-radius: 20px;
     padding: 18px;
-
     margin-top: -1px;
-
     display: flex;
-
     align-items: center;
-
     box-shadow: 0 15px 45px rgba(0, 0, 0, .18);
-
+    border: 1px solid #0000001F;
 }
 
 /* Search Input */
 
 .search-input {
-
     flex: 1;
-
-    height: 62px;
-
-    border: 1px solid #ECECEC;
-
-    border-radius: 14px;
-
+    height: 55px;
+    border: 1px solid #0000001F;
+    border-radius: 12px;
     display: flex;
-
     align-items: center;
-
-    padding: 0 20px;
+    padding: 6px 9px 5px 20px;
 
 }
 
 .search-input i {
-
     color: #888;
-
     font-size: 20px;
-
     margin-right: 14px;
-
 }
 
 .search-input input {
-
     width: 100%;
-
     border: none;
-
     outline: none;
-
     font-size: 15px;
-
 }
 
 .search-input input::placeholder {
@@ -274,24 +263,14 @@ a {
 
 }
 
-/* Search Button */
-
 .search-btn {
 
     width: 150px;
-
-    height: 62px;
-
-    margin-left: 15px;
-
+    height: 100%;
     border: none;
-
     border-radius: 14px;
-
     background: #F49363;
-
     font-weight: 600;
-
     transition: .3s;
 
 }
