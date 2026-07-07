@@ -29,7 +29,7 @@ a {
 }
 
 .container {
-    max-width: 1280px;
+    max-width: 1220px;
 }
 
 /* top-annoucment-bar */
@@ -113,11 +113,11 @@ a {
 
 /* hero section */
 .hero {
-    padding: 20px 0 70px
+    padding: 6px;
 }
 
 .hero-wrapper {
-    height: 540px;
+    height: 496px;
     border-radius: 50px;
     overflow: hidden;
     position: relative;
@@ -177,7 +177,6 @@ a {
     background: #fff;
     border-radius: 16px 16px 0 0;
     overflow: hidden;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, .12);
 }
 
 .tab-btn {
@@ -224,7 +223,7 @@ a {
     z-index: 10;
     border-radius: 20px;
     padding: 18px;
-    margin-top: -1px;
+    margin-top: 0px;
     display: flex;
     align-items: center;
     box-shadow: 0 15px 45px rgba(0, 0, 0, .18);
@@ -276,21 +275,118 @@ a {
 }
 
 .search-btn:hover {
-
     background: #eb8755;
-
 }
 
 /* Bottom Text */
 
 .hero-bottom-text {
-
     margin-top: 30px;
-
     color: #F49363;
-
     font-size: 18px;
-
     font-weight: 600;
+}
 
+
+
+/* footer  */
+
+
+.footer {
+
+    background: #F7F4ED;
+    padding: 70px 0 30px;
+    margin-top: 120px;
+
+}
+
+.footer .container {
+    max-width: 1280px;
+}
+
+.footer-logo {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.footer-logo img {
+    height: 60px;
+    margin-bottom: 18px
+}
+
+.footer-logo p {
+    font-size: 17px;
+    color: #333;
+    max-width: 760px;
+    margin: auto;
+    font-weight: 500;
+}
+
+/* Divider */
+
+.footer hr {
+
+    border: none;
+    border-top: 1px solid #E3DED5;
+    opacity: 1;
+    margin: 35px 0;
+
+}
+
+/* Description */
+
+.footer-description {
+    color: #707070;
+    font-size: 14px;
+    line-height: 1.7;
+    max-width: 330px;
+}
+
+.footer-description a {
+
+    color: #6A6A6A;
+    text-decoration: underline;
+
+}
+
+/* Titles */
+
+.footer h6 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 18px;
+    color: #222
+}
+
+
+.footer ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+}
+
+.footer ul li {
+    margin-bottom: 12px;
+
+}
+
+.footer ul li a {
+    color: #707070;
+    text-decoration: none;
+    font-size: 14px;
+    transition: .25s;
+}
+
+.footer ul li a:hover {
+    color: #F49363;
+    padding-left: 5px;
+
+}
+
+/* Copyright */
+
+.copyright {
+    color: #8B8B8B;
+    font-size: 13px;
 }
