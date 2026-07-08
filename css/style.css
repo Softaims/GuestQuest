@@ -326,11 +326,14 @@ a {
     color: var(--primary);
     background: #FAFAFA;
     transition: .2s;
+        border-radius: 16px;
+
 }
 
 .search-suggestion-viewall:hover {
     background: #F49363;
     color: #fff;
+    border-radius: 16px;
 }
 
 /* Search Input */
