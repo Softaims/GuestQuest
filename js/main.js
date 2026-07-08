@@ -486,3 +486,21 @@ $(document).on("click", ".destination-card", function () {
     if (place) openDetailModal(place);
 
 });
+
+let searchDebounceTimer = null;
+
+$(document).on("input", "#titleSearchInput", function () {
+
+    const value = $(this).val();
+
+    clearTimeout(searchDebounceTimer);
+
+    searchDebounceTimer = setTimeout(() => {
+
+        searchQuery = value.trim();
+        currentPage = 1;
+        renderCardsWithLoading();
+
+    }, 250);
+
+});
