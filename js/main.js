@@ -11,16 +11,58 @@ $(function () {
 
 });
 
+let activeCategory = null;
+let pendingCategory = null;
+
+function updateFilterCount() {
+
+    const $badge = $(".filter-count");
+
+    if (activeCategory) {
+        $badge.text("1").show();
+    } else {
+        $badge.hide();
+    }
+
+}
+
 $(function () {
 
-    $(".chip").on("click", function () {
+    updateFilterCount();
 
-        $(this)
-            .siblings()
-            .removeClass("active");
+    $("#filterModal").on("show.bs.modal", function () {
 
-        $(this)
-            .addClass("active");
+        pendingCategory = activeCategory;
+
+        $("#filterModal .chip").removeClass("active");
+
+        const selector = activeCategory
+            ? `#filterModal .chip[data-category="${activeCategory}"]`
+            : `#filterModal .chip[data-category=""]`;
+
+        $(selector).addClass("active");
+
+    });
+
+    $("#filterModal .chip").on("click", function () {
+
+        $("#filterModal .chip").removeClass("active");
+
+        $(this).addClass("active");
+
+        pendingCategory = $(this).data("category") || null;
+
+    });
+
+    $(".btn-apply").on("click", function () {
+
+        activeCategory = pendingCategory;
+        currentPage = 1;
+
+        updateFilterCount();
+        renderCardsWithLoading();
+
+        bootstrap.Modal.getInstance(document.getElementById("filterModal")).hide();
 
     });
 
@@ -28,7 +70,17 @@ $(function () {
 
         e.preventDefault();
 
-        $(".chip").removeClass("active");
+        activeCategory = null;
+        pendingCategory = null;
+
+        $("#filterModal .chip").removeClass("active");
+        $(`#filterModal .chip[data-category=""]`).addClass("active");
+
+        updateFilterCount();
+        currentPage = 1;
+        renderCardsWithLoading();
+
+        bootstrap.Modal.getInstance(document.getElementById("filterModal")).hide();
 
     });
 
@@ -246,9 +298,28 @@ function cardHTML(place) {
     </div>`;
 }
 
+let searchQuery = "";
+
+function getFilteredDestinations() {
+
+    return destinations.filter((d) => {
+
+        const matchesCategory = !activeCategory
+            || (d.category || "").toLowerCase() === activeCategory.toLowerCase();
+
+        const matchesSearch = !searchQuery
+            || d.title.toLowerCase().includes(searchQuery.toLowerCase());
+
+        return matchesCategory && matchesSearch;
+
+    });
+
+}
+
 function currentPageItems() {
+    const filtered = getFilteredDestinations();
     const start = (currentPage - 1) * ITEMS_PER_PAGE;
-    return destinations.slice(start, start + ITEMS_PER_PAGE);
+    return filtered.slice(start, start + ITEMS_PER_PAGE);
 }
 
 function renderCards() {
@@ -270,7 +341,7 @@ function renderCards() {
 
 function renderPagination() {
 
-    const totalPages = Math.ceil(destinations.length / ITEMS_PER_PAGE);
+    const totalPages = Math.ceil(getFilteredDestinations().length / ITEMS_PER_PAGE);
     const $pagination = $("#pagination");
 
     if (totalPages <= 1) {
