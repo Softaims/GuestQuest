@@ -511,3 +511,73 @@ $(document).on("input", "#titleSearchInput", function () {
     }, 250);
 
 });
+
+/* homepage search suggestions */
+
+function searchSuggestionHTML(place) {
+
+    return `
+    <div class="search-suggestion-item" data-id="${place.id}">
+        <i class="bi bi-geo-alt-fill"></i>
+        <div>
+            <div class="search-suggestion-title">${place.title}</div>
+            <div class="search-suggestion-location">${place.address}</div>
+        </div>
+    </div>`;
+
+}
+
+let homeSearchDebounceTimer = null;
+
+$(document).on("input", "#homeSearchInput", function () {
+
+    const value = $(this).val().trim();
+    const $suggestions = $("#homeSearchSuggestions");
+
+    clearTimeout(homeSearchDebounceTimer);
+
+    if (!value) {
+        $suggestions.removeClass("show").empty();
+        return;
+    }
+
+    homeSearchDebounceTimer = setTimeout(() => {
+
+        const query = value.toLowerCase();
+
+        const matches = destinations.filter(d =>
+            d.title.toLowerCase().includes(query) || d.address.toLowerCase().includes(query)
+        ).slice(0, 6);
+
+        if (matches.length === 0) {
+            $suggestions.addClass("show").html(`<div class="search-suggestion-empty">No matching places found</div>`);
+        } else {
+            $suggestions.addClass("show").html(matches.map(searchSuggestionHTML).join(""));
+        }
+
+    }, 200);
+
+});
+
+$(document).on("click", ".search-suggestion-item", function () {
+
+    const id = parseInt($(this).data("id"));
+    window.location.href = `/pages/destination-detail.html?id=${id}`;
+
+});
+
+$(document).on("keydown", "#homeSearchInput", function (e) {
+
+    if (e.key === "Escape") {
+        $("#homeSearchSuggestions").removeClass("show").empty();
+    }
+
+});
+
+$(document).on("click", function (e) {
+
+    if (!$(e.target).closest("#homeSearchInput, #homeSearchSuggestions").length) {
+        $("#homeSearchSuggestions").removeClass("show").empty();
+    }
+
+});
