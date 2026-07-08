@@ -70,6 +70,7 @@ $(function () {
 
     const RENTAL_NAMES = ["Berger Realty", "Coastal Realty Group", "Harborview Rentals"];
     const HOTEL_NAMES = ["Seaside Grand Hotel", "Mountain View Inn", "Harbor Lights Hotel"];
+    const destinationImages = destinations.map(d => d.image);
 
     const nearbyDestinations = destinations
         .filter(d => d.id !== place.id)
