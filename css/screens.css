@@ -105,7 +105,9 @@
         width: 98%;
         max-width: 98%;
     }
-
+ .things-search-wrapper .search-box {
+        width: 90%;
+    }
     .search-tabs {
         width: 100%;
         display:grid;
