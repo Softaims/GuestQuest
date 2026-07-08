@@ -287,6 +287,7 @@ a {
 
 .search-suggestion-item:hover {
     background: #FAFAFA;
+    border-radius: 18px;
 }
 
 .search-suggestion-item i {

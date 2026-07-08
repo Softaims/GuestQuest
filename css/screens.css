@@ -98,17 +98,18 @@
 @media (max-width:991px) {
 
     .hero-search {
-        width: 80%;
+        width: 90%;
     }
 
     .things-search-wrapper {
-        width: 96%;
-        max-width: 96%;
+        width: 98%;
+        max-width: 98%;
     }
 
     .search-tabs {
         width: 100%;
-        flex-wrap: wrap;
+        display:grid;
+        grid-template-columns: 1fr 1fr;
     }
 
     .tab-btn {

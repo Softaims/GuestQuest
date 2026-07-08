@@ -122,146 +122,49 @@ const tagIcons = {
     "Hiking Trails": "bi-signpost-2",
 };
 
+let destinations = [];
+window.destinations = destinations;
 
-const spots = [
-  {
-    "id": 1,
-    "title": "Sunset Kayak Tour",
-    "category": "Outdoor",
-    "tags": ["National Parks", "Local Parks"],
-    "location": "Lake Tahoe, CA",
-    "price": 65,
-    "rating": 4.8,
-    "state": "NJ", "lat": 39.36, "lng": -74.42,
-    "description": "Paddle across calm waters as the sun sets behind the mountains. Includes gear, a certified guide, and light refreshments. Suitable for beginners.",
-    "images": [
-      "https://picsum.photos/id/1018/800/500",
-      "https://picsum.photos/id/1015/800/500",
-      "https://picsum.photos/id/1019/800/500",
-      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&q=80",
-    "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=500&q=80",
-    "https://images.unsplash.com/photo-1519046904884-53103b34b206?w=500&q=80",
-  
-    ]
-  },
-  {
-    "id": 2,
-    "title": "Old Town Food Walk",
-    "category": "Food & Drink",
-    "tags": ["Restaurant"],
-    "location": "Savannah, GA",
-    "price": 49,
-    "rating": 4.9,
-    "state": "FL", "lat": 24.56, "lng": -81.78,
-    "description": "A guided 3-hour tasting tour through historic streets. Six stops, local specialties, and stories from a longtime resident guide.",
-    "images": [
-      "https://picsum.photos/id/292/800/500",
-      "https://picsum.photos/id/431/800/500",
-      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&q=80",
-    "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=500&q=80",
-    "https://images.unsplash.com/photo-1519046904884-53103b34b206?w=500&q=80",
-  
-    ]
-  },
-  {
-    "id": 3,
-    "title": "Family Wildlife Safari",
-    "category": "Family",
-    "tags": ["Wildlife Areas", "National Parks"],
-    "location": "San Diego, CA",
-    "price": 38,
-    "rating": 4.6,
-    "state": "NC", "lat": 35.6, "lng": -82.55,
-    "description": "An open-air ride through a 1,800-acre wildlife park. Great for kids, with up-close animal viewing and an onboard naturalist.",
-    "images": [
-      "https://picsum.photos/id/237/800/500",
-      "https://picsum.photos/id/433/800/500",
-      "https://picsum.photos/id/169/800/500",
-      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&q=80",
-    "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=500&q=80",
-    "https://images.unsplash.com/photo-1519046904884-53103b34b206?w=500&q=80",
-  
-    ]
-  },
-  {
-    "id": 4,
-    "title": "Historic City Bus Tour",
-    "category": "Tours",
-    "tags": ["Local Parks"],
-    "location": "Boston, MA",
-    "price": 30,
-    "rating": 4.3,
-    "state": "CA", "lat": 39.09, "lng": -120.03,
-    "description": "Hop-on hop-off tour covering 18 landmarks with live commentary. Tickets valid all day across all stops.",
-    "images": [
-      "https://picsum.photos/id/164/800/500",
-      "https://picsum.photos/id/180/800/500",
-      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&q=80",
-    "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=500&q=80",
-    "https://images.unsplash.com/photo-1519046904884-53103b34b206?w=500&q=80",
-  
-    ]
-  },
-  {
-    "id": 5,
-    "title": "Mountain Sunrise Hike",
-    "category": "Outdoor",
-    "tags": ["Hiking Trails", "National Parks"],
-    "location": "Boulder, CO",
-    "price": 25,
-    "rating": 4.7,
-    "state": "AZ", "lat": 34.87, "lng": -111.76,
-    "description": "A guided early-morning hike to a scenic ridge. Moderate difficulty, about 4 miles round trip. Coffee included at the summit.",
-    "images": [
-      "https://picsum.photos/id/1036/800/500",
-      "https://picsum.photos/id/1037/800/500",
-      "https://picsum.photos/id/1039/800/500",
-      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&q=80",
-    "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=500&q=80",
-    "https://images.unsplash.com/photo-1519046904884-53103b34b206?w=500&q=80",
-  
-    ]
-  },
-  {
-    "id": 6,
-    "title": "Craft Brewery Tasting",
-    "category": "Food & Drink",
-    "tags": ["Restaurant"],
-    "location": "Portland, OR",
-    "price": 55,
-    "rating": 4.5,
-    "state": "SC", "lat": 32.78, "lng": -79.93,
-    "description": "Sample flights from four award-winning local breweries with a guide who knows the scene. Includes transport between locations.",
-    "images": [
-      "https://picsum.photos/id/225/800/500",
-      "https://picsum.photos/id/431/800/500",
-      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&q=80",
-    "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=500&q=80",
-    "https://images.unsplash.com/photo-1519046904884-53103b34b206?w=500&q=80",
-  
-    ]
-  }
-]
+function mapDestinationData(spots) {
+        return spots.map((spot, i) => ({
+                id: i + 1,
+                title: spot.title,
+                category: spot.category,
+                address: spot.location,
+                description: spot.description,
+                price: spot.price,
+                rating: spot.rating,
+                reviews: `${Math.floor(Math.random() * 491) + 10}`,
+                phone: `(${200 + (i * 11) % 700}) 555-${String(1000 + (i * 37) % 9000).slice(0, 4)}`,
+                email: `info@${spot.title.toLowerCase().replace(/[^a-z0-9]+/g, "")}.com`,
+                website: `www.${spot.title.toLowerCase().replace(/[^a-z0-9]+/g, "")}.com`,
+                image: spot.images[0],
+                gallery: spot.images,
+                tags: spot.tags || [],
+                lat: spot.lat,
+                lng: spot.lng
+        }));
+}
 
-// map all destination 
-const destinations = spots.map((spot, i) => ({
-    id: i + 1,
-    title: spot.title,
-    category: spot.category,
-    address: spot.location,
-    description: spot.description,
-    price: spot.price,
-    rating: spot.rating,
-    reviews: `${Math.floor(Math.random() * 491) + 10}`,
-    phone: `(${200 + (i * 11) % 700}) 555-${String(1000 + (i * 37) % 9000).slice(0, 4)}`,
-    email: `info@${spot.title.toLowerCase().replace(/[^a-z0-9]+/g, "")}.com`,
-    website: `www.${spot.title.toLowerCase().replace(/[^a-z0-9]+/g, "")}.com`,
-    image: spot.images[0],
-    gallery: spot.images,
-    tags: spot.tags || [],
-    lat: spot.lat,
-    lng: spot.lng
-}));
+window.destinationsReady = fetch("/js/data.json")
+        .then(response => {
+                if (!response.ok) {
+                        throw new Error(`Failed to load data.json (${response.status})`);
+                }
+
+                return response.json();
+        })
+        .then(spots => {
+                destinations = mapDestinationData(spots);
+                window.destinations = destinations;
+                return destinations;
+        })
+        .catch(error => {
+                console.error(error);
+                destinations = [];
+                window.destinations = destinations;
+                return destinations;
+        });
 
 /* render */
 
@@ -402,6 +305,26 @@ function renderCardsWithLoading() {
     setTimeout(renderCards, 350);
 
 }
+
+let destinationAppStarted = false;
+
+function startDestinationApp() {
+
+    if (destinationAppStarted || !destinations.length || !$("#resultsContainer").length) {
+        return;
+    }
+
+    destinationAppStarted = true;
+    updateFilterCount();
+    renderCardsWithLoading();
+
+}
+
+$(function () {
+
+    window.destinationsReady.then(startDestinationApp);
+
+});
 
 /* pagination */
 
