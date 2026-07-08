@@ -1,8 +1,14 @@
 $(function () {
 
+    const initDetailPage = () => {
+
     const params = new URLSearchParams(window.location.search);
     const id = parseInt(params.get("id")) || 1;
     const place = destinations.find(d => d.id === id) || destinations[0];
+
+    if (!place) {
+        return;
+    }
 
     /* gallery */
 
@@ -316,7 +322,6 @@ $(function () {
             infinite: true,
             speed: 300,
             slidesToShow: 1,
-            adaptiveHeight: true,
             initialSlide: galleryStartIndex
         });
 
@@ -333,5 +338,13 @@ $(function () {
         }
 
     });
+
+    };
+
+    if (window.destinationsReady && typeof window.destinationsReady.then === "function") {
+        window.destinationsReady.then(initDetailPage);
+    } else {
+        initDetailPage();
+    }
 
 });
