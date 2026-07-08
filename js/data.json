@@ -1,0 +1,83 @@
+[
+  {
+    "id": 1,
+    "title": "Sunset Kayak Tour",
+    "category": "Outdoor",
+    "location": "Lake Tahoe, CA",
+    "price": 65,
+    "rating": 4.8,
+    "description": "Paddle across calm waters as the sun sets behind the mountains. Includes gear, a certified guide, and light refreshments. Suitable for beginners.",
+    "images": [
+      "https://picsum.photos/id/1018/800/500",
+      "https://picsum.photos/id/1015/800/500",
+      "https://picsum.photos/id/1019/800/500"
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Old Town Food Walk",
+    "category": "Food & Drink",
+    "location": "Savannah, GA",
+    "price": 49,
+    "rating": 4.9,
+    "description": "A guided 3-hour tasting tour through historic streets. Six stops, local specialties, and stories from a longtime resident guide.",
+    "images": [
+      "https://picsum.photos/id/292/800/500",
+      "https://picsum.photos/id/431/800/500"
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Family Wildlife Safari",
+    "category": "Family",
+    "location": "San Diego, CA",
+    "price": 38,
+    "rating": 4.6,
+    "description": "An open-air ride through a 1,800-acre wildlife park. Great for kids, with up-close animal viewing and an onboard naturalist.",
+    "images": [
+      "https://picsum.photos/id/237/800/500",
+      "https://picsum.photos/id/433/800/500",
+      "https://picsum.photos/id/169/800/500"
+    ]
+  },
+  {
+    "id": 4,
+    "title": "Historic City Bus Tour",
+    "category": "Tours",
+    "location": "Boston, MA",
+    "price": 30,
+    "rating": 4.3,
+    "description": "Hop-on hop-off tour covering 18 landmarks with live commentary. Tickets valid all day across all stops.",
+    "images": [
+      "https://picsum.photos/id/164/800/500",
+      "https://picsum.photos/id/180/800/500"
+    ]
+  },
+  {
+    "id": 5,
+    "title": "Mountain Sunrise Hike",
+    "category": "Outdoor",
+    "location": "Boulder, CO",
+    "price": 25,
+    "rating": 4.7,
+    "description": "A guided early-morning hike to a scenic ridge. Moderate difficulty, about 4 miles round trip. Coffee included at the summit.",
+    "images": [
+      "https://picsum.photos/id/1036/800/500",
+      "https://picsum.photos/id/1037/800/500",
+      "https://picsum.photos/id/1039/800/500"
+    ]
+  },
+  {
+    "id": 6,
+    "title": "Craft Brewery Tasting",
+    "category": "Food & Drink",
+    "location": "Portland, OR",
+    "price": 55,
+    "rating": 4.5,
+    "description": "Sample flights from four award-winning local breweries with a guide who knows the scene. Includes transport between locations.",
+    "images": [
+      "https://picsum.photos/id/225/800/500",
+      "https://picsum.photos/id/431/800/500"
+    ]
+  }
+]

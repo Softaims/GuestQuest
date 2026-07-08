@@ -289,21 +289,6 @@ $(function () {
 
         $slider.html(slidesHTML);
 
-        $("#galleryModalTitle").text(place.title);
-        $("#galleryModalRating").html(`
-            <i class="bi bi-star-fill"></i>
-            ${place.rating} <small>(${place.reviews} reviews)</small>
-        `);
-        $("#galleryModalLocation").html(`
-            <i class="bi bi-geo-alt"></i>
-            ${place.address}
-        `);
-        $("#galleryModalDescription").text(place.description);
-        $("#galleryModalPrice").html(`
-            <small>From</small>
-            <span>$${place.price}.00</span>
-        `);
-
         bootstrap.Modal.getOrCreateInstance(document.getElementById("galleryModal")).show();
 
     }
