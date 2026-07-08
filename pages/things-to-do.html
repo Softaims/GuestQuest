@@ -137,31 +137,22 @@
             <div class="row g-4">
 
                 <!-- LEFT -->
-
                 <div class="col-lg-7">
                     <div class="results-header">
-
                         <div class="results-count">
-
                             <h5>
                                 <span id="resultCount">107</span> Search Result found
                             </h5>
-
                         </div>
 
                         <div class="view-switcher">
-
                             <button class="view-btn active" data-view="list">
-
                                 <i class="bi bi-list-ul"></i>
-
                             </button>
 
                             <button class="view-btn" data-view="grid">
-
                                 <i class="bi bi-grid-3x3-gap-fill"></i>
-
-                            </button>
+                           </button>
 
                         </div>
 
@@ -334,39 +325,129 @@
 
                         <div class="chips">
 
-                            <button class="chip active">
+                            <button class="chip active" data-category="">
                                 <span class="radio"></span>
                                 All Attraction Types
                             </button>
 
-                            <button class="chip">
+                        </div>
+
+                    </div>
+
+                    <div class="filter-section">
+
+                        <h6>Parks &amp; Protected Places</h6>
+
+                        <div class="chips">
+
+                            <button class="chip" data-category="National Parks">
                                 <span class="radio"></span>
                                 National Parks
                             </button>
 
-                            <button class="chip">
+                            <button class="chip" data-category="State Parks">
                                 <span class="radio"></span>
                                 State Parks
                             </button>
 
-                            <button class="chip">
+                            <button class="chip" data-category="Local Parks">
                                 <span class="radio"></span>
                                 Local Parks
                             </button>
 
-                            <button class="chip">
+                            <button class="chip" data-category="Wildlife Areas">
                                 <span class="radio"></span>
                                 Wildlife Areas
                             </button>
 
-                            <button class="chip">
+                            <button class="chip" data-category="Nature Centre">
                                 <span class="radio"></span>
                                 Nature Centre
                             </button>
 
-                            <button class="chip">
+                        </div>
+
+                    </div>
+
+                    <div class="filter-section">
+
+                        <h6>Trails &amp; Outdoor Adventure</h6>
+
+                        <div class="chips">
+
+                            <button class="chip" data-category="Hiking Trails">
                                 <span class="radio"></span>
-                                Botanical Gardens
+                                Hiking Trails
+                            </button>
+
+                            <button class="chip" data-category="Biking Trails">
+                                <span class="radio"></span>
+                                Biking Trails
+                            </button>
+
+                            <button class="chip" data-category="Camping &amp; RV Parks">
+                                <span class="radio"></span>
+                                Camping &amp; RV Parks
+                            </button>
+
+                            <button class="chip" data-category="Caving">
+                                <span class="radio"></span>
+                                Caving
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                    <div class="filter-section">
+
+                        <h6>Scenic &amp; Natural Wonders</h6>
+
+                        <div class="chips">
+
+                            <button class="chip" data-category="Waterfalls">
+                                <span class="radio"></span>
+                                Waterfalls
+                            </button>
+
+                            <button class="chip" data-category="Science Drives">
+                                <span class="radio"></span>
+                                Science Drives
+                            </button>
+
+                            <button class="chip" data-category="Dark Sky Parks">
+                                <span class="radio"></span>
+                                Dark Sky Parks
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                    <div class="filter-section">
+
+                        <h6>Category</h6>
+
+                        <div class="chips">
+
+                            <button class="chip" data-category="Tours">
+                                <span class="radio"></span>
+                                Tours
+                            </button>
+
+                            <button class="chip" data-category="Outdoor">
+                                <span class="radio"></span>
+                                Outdoor
+                            </button>
+
+                            <button class="chip" data-category="Food &amp; Drink">
+                                <span class="radio"></span>
+                                Food &amp; Drink
+                            </button>
+
+                            <button class="chip" data-category="Family">
+                                <span class="radio"></span>
+                                Family
                             </button>
 
                         </div>
@@ -483,7 +564,7 @@
 
 
     <script>
-        // map
+        // map configuration
         const map = L.map("map", {
             zoomControl: false,
             scrollWheelZoom: true
@@ -492,7 +573,7 @@
         L.tileLayer(
             'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',
             {
-                attribution: '© OpenStreetMap © CARTO',
+                attribution: '© GUESTQUEST',
                 maxZoom: 20
             }
         ).addTo(map);
