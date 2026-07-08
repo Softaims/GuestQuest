@@ -149,9 +149,10 @@ a {
     background: rgba(0, 0, 0, .60);
     top:0;
     right:0;
+    left:0;
+    bottom:0;
     z-index: 1;
-        border-radius: 20px;
-
+    o
 }
 
 .hero-content {
