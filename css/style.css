@@ -314,6 +314,25 @@ a {
     text-align: center;
 }
 
+.search-suggestion-viewall {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 14px 18px;
+    border-top: 1px solid #ECECEC;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--primary);
+    background: #FAFAFA;
+    transition: .2s;
+}
+
+.search-suggestion-viewall:hover {
+    background: #F49363;
+    color: #fff;
+}
+
 /* Search Input */
 
 .search-input {

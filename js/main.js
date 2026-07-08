@@ -472,10 +472,16 @@ $(document).on("input", "#homeSearchInput", function () {
             d.title.toLowerCase().includes(query) || d.address.toLowerCase().includes(query)
         ).slice(0, 6);
 
+        const viewAllHTML = `
+            <a class="search-suggestion-viewall" href="/pages/things-to-do.html?q=${encodeURIComponent(value)}">
+                View all in Things to do
+                <i class="bi bi-arrow-right"></i>
+            </a>`;
+
         if (matches.length === 0) {
-            $suggestions.addClass("show").html(`<div class="search-suggestion-empty">No matching places found</div>`);
+            $suggestions.addClass("show").html(`<div class="search-suggestion-empty">No matching places found</div>` + viewAllHTML);
         } else {
-            $suggestions.addClass("show").html(matches.map(searchSuggestionHTML).join(""));
+            $suggestions.addClass("show").html(matches.map(searchSuggestionHTML).join("") + viewAllHTML);
         }
 
     }, 200);
@@ -504,3 +510,18 @@ $(document).on("click", function (e) {
     }
 
 });
+
+/* pre-fill title search on things-to-do page from ?q= (e.g. homepage "View all" link) */
+
+(function () {
+
+    const params = new URLSearchParams(window.location.search);
+    const q = params.get("q");
+    const $titleSearchInput = $("#titleSearchInput");
+
+    if (q && $titleSearchInput.length) {
+        $titleSearchInput.val(q);
+        searchQuery = q.trim();
+    }
+
+})();
