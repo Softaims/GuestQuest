@@ -227,7 +227,9 @@ $(function () {
 
     $("#galleryModal").on("shown.bs.modal", function () {
 
-        $("#galleryModalSlider").slick({
+        const $slider = $("#galleryModalSlider");
+
+        $slider.slick({
             dots: true,
             arrows: true,
             infinite: true,
@@ -235,6 +237,8 @@ $(function () {
             slidesToShow: 1,
             adaptiveHeight: true
         });
+
+        setTimeout(() => $slider.slick("setPosition"), 50);
 
     });
 

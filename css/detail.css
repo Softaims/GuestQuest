@@ -618,13 +618,15 @@
 }
 
 .gallery-modal-content .modal-body {
-    display: grid;
-    grid-template-columns: 1.6fr 1fr;
+    display: flex;
+    flex-wrap: wrap;
     padding: 0;
 }
 
 .gallery-modal-slider {
     background: #000;
+    flex: 0 0 62%;
+    max-width: 62%;
 }
 
 .gallery-slide img {
@@ -635,6 +637,8 @@
 }
 
 .gallery-modal-info {
+    flex: 1;
+    min-width: 300px;
     padding: 32px;
     display: flex;
     flex-direction: column;
@@ -734,8 +738,9 @@
 
 @media(max-width:768px) {
 
-    .gallery-modal-content .modal-body {
-        grid-template-columns: 1fr;
+    .gallery-modal-slider {
+        flex: 0 0 100%;
+        max-width: 100%;
     }
 
     .gallery-slide img {
@@ -743,6 +748,7 @@
     }
 
     .gallery-modal-info {
+        min-width: 100%;
         padding: 20px;
     }
 
