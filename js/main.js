@@ -482,7 +482,7 @@ function openDetailModal(place) {
     $("#detailWebsite").text(place.website).attr("href", `https://${place.website}`);
     $("#detailFullLink").attr("href", `/pages/destination-detail.html?id=${place.id}`);
 
-    new bootstrap.Modal(document.getElementById("detailModal")).show();
+    bootstrap.Modal.getOrCreateInstance(document.getElementById("detailModal")).show();
 }
 
 $(document).on("click", ".destination-card", function () {

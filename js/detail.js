@@ -9,19 +9,19 @@ $(function () {
     const g = place.gallery;
 
     $("#pageGallery").html(`
-        <div class="gallery-page-main">
+        <div class="gallery-page-main" data-index="0">
             <img src="${g[0]}" alt="${place.title}">
         </div>
-        <div class="gallery-page-sub">
+        <div class="gallery-page-sub" data-index="1">
             <img src="${g[1]}" alt="${place.title}">
         </div>
-        <div class="gallery-page-sub">
+        <div class="gallery-page-sub" data-index="2">
             <img src="${g[2]}" alt="${place.title}">
         </div>
-        <div class="gallery-page-sub">
+        <div class="gallery-page-sub" data-index="3">
             <img src="${g[3]}" alt="${place.title}">
         </div>
-        <div class="gallery-page-sub gallery-more">
+        <div class="gallery-page-sub gallery-more" data-index="4">
             <img src="${g[4]}" alt="${place.title}">
             <button class="see-all-btn">
                 <i class="bi bi-grid-3x3-gap-fill"></i>
@@ -188,9 +188,92 @@ $(function () {
 
     L.marker([place.lat, place.lng], { icon: orangeIcon }).addTo(map);
 
+    /* request info modal */
+
+    const $requestModal = $("#requestInfoModal");
+    const $requestForm = $("#requestInfoForm");
+    const $requestSuccess = $("#requestInfoSuccess");
+    const $requestSubmit = $("#requestInfoSubmit");
+    const requestModalEl = document.getElementById("requestInfoModal");
+
+    function resetRequestModal() {
+        $requestForm[0].reset();
+        $requestForm.find(".form-control").removeClass("is-valid is-invalid");
+        $requestSuccess.addClass("d-none");
+        $requestForm.removeClass("d-none");
+        $requestSubmit.prop("disabled", false);
+        $requestSubmit.find(".submit-label").removeClass("d-none");
+        $requestSubmit.find(".submit-loading").addClass("d-none");
+    }
+
+    function validateField($field, isValid) {
+        $field.toggleClass("is-valid", isValid);
+        $field.toggleClass("is-invalid", !isValid);
+    }
+
+    function validateRequestForm() {
+        const name = $("#requestName").val().trim();
+        const email = $("#requestEmail").val().trim();
+        const phone = $("#requestPhone").val().trim();
+
+        const nameValid = name.length >= 2;
+        const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        const phoneDigits = phone.replace(/\D/g, "");
+        const phoneValid = phoneDigits.length >= 10;
+
+        validateField($("#requestName"), nameValid);
+        validateField($("#requestEmail"), emailValid);
+        validateField($("#requestPhone"), phoneValid);
+
+        return nameValid && emailValid && phoneValid;
+    }
+
+    $(document).on("click", ".request-info-btn", function () {
+        resetRequestModal();
+        bootstrap.Modal.getOrCreateInstance(requestModalEl).show();
+    });
+
+    $("#requestInfoModal").on("show.bs.modal", function () {
+        resetRequestModal();
+    });
+
+    $("#requestInfoModal").on("hidden.bs.modal", function () {
+        resetRequestModal();
+    });
+
+    $requestForm.on("submit", function (e) {
+        e.preventDefault();
+
+        if (!validateRequestForm()) {
+            return;
+        }
+
+        $requestSubmit.prop("disabled", true);
+        $requestSubmit.find(".submit-label").addClass("d-none");
+        $requestSubmit.find(".submit-loading").removeClass("d-none");
+
+        setTimeout(() => {
+            $requestForm.addClass("d-none");
+            $requestSuccess.removeClass("d-none");
+            $requestSubmit.prop("disabled", false);
+            $requestSubmit.find(".submit-label").removeClass("d-none");
+            $requestSubmit.find(".submit-loading").addClass("d-none");
+        }, 600);
+    });
+
+    $requestForm.find(".form-control").on("input", function () {
+        if ($(this).hasClass("is-invalid")) {
+            validateRequestForm();
+        }
+    });
+
     /* gallery modal */
 
-    $(document).on("click", ".see-all-btn", function () {
+    let galleryStartIndex = 0;
+
+    function openGalleryModal(startIndex) {
+
+        galleryStartIndex = startIndex || 0;
 
         const $slider = $("#galleryModalSlider");
 
@@ -221,7 +304,20 @@ $(function () {
             <span>$${place.price}.00</span>
         `);
 
-        new bootstrap.Modal(document.getElementById("galleryModal")).show();
+        bootstrap.Modal.getOrCreateInstance(document.getElementById("galleryModal")).show();
+
+    }
+
+    $(document).on("click", ".see-all-btn", function (e) {
+
+        e.stopPropagation();
+        openGalleryModal(0);
+
+    });
+
+    $(document).on("click", ".gallery-page-main, .gallery-page-sub", function () {
+
+        openGalleryModal(parseInt($(this).data("index")) || 0);
 
     });
 
@@ -235,7 +331,8 @@ $(function () {
             infinite: true,
             speed: 300,
             slidesToShow: 1,
-            adaptiveHeight: true
+            adaptiveHeight: true,
+            initialSlide: galleryStartIndex
         });
 
         setTimeout(() => $slider.slick("setPosition"), 50);
