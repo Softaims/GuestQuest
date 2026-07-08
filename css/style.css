@@ -136,7 +136,7 @@ a {
 
 .hero-wrapper {
     height: 496px;
-    border-radius: 50px;
+    border-radius: 2rem;
     position: relative;
     background: url("../assets/img/bg_hero.png") center center/cover;
 
@@ -151,8 +151,8 @@ a {
     right:0;
     left:0;
     bottom:0;
-    z-index: 1;
-    o
+        border-radius: 2rem;
+
 }
 
 .hero-content {
