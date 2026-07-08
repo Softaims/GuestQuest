@@ -187,4 +187,64 @@ $(function () {
 
     L.marker([place.lat, place.lng], { icon: orangeIcon }).addTo(map);
 
+    /* gallery modal */
+
+    $(document).on("click", ".see-all-btn", function () {
+
+        const $slider = $("#galleryModalSlider");
+
+        if ($slider.hasClass("slick-initialized")) {
+            $slider.slick("unslick");
+        }
+
+        const slidesHTML = g.map(img => `
+            <div class="gallery-slide">
+                <img src="${img}" alt="${place.title}">
+            </div>
+        `).join("");
+
+        $slider.html(slidesHTML);
+
+        $("#galleryModalTitle").text(place.title);
+        $("#galleryModalRating").html(`
+            <i class="bi bi-star-fill"></i>
+            ${place.rating} <small>(${place.reviews} reviews)</small>
+        `);
+        $("#galleryModalLocation").html(`
+            <i class="bi bi-geo-alt"></i>
+            ${place.address}
+        `);
+        $("#galleryModalDescription").text(place.description);
+        $("#galleryModalPrice").html(`
+            <small>From</small>
+            <span>$${place.price}.00</span>
+        `);
+
+        new bootstrap.Modal(document.getElementById("galleryModal")).show();
+
+    });
+
+    $("#galleryModal").on("shown.bs.modal", function () {
+
+        $("#galleryModalSlider").slick({
+            dots: true,
+            arrows: true,
+            infinite: true,
+            speed: 300,
+            slidesToShow: 1,
+            adaptiveHeight: true
+        });
+
+    });
+
+    $("#galleryModal").on("hidden.bs.modal", function () {
+
+        const $slider = $("#galleryModalSlider");
+
+        if ($slider.hasClass("slick-initialized")) {
+            $slider.slick("unslick");
+        }
+
+    });
+
 });

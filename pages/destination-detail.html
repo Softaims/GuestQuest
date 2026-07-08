@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="/css/things-to-do.css">
     <link rel="stylesheet" href="/css/detail.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
 </head>
 
 <body>
@@ -355,10 +357,39 @@
 
     </footer>
 
+    <!-- gallery modal -->
+
+    <div class="modal fade" id="galleryModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+            <div class="modal-content gallery-modal-content">
+
+                <button type="button" class="gallery-modal-close" data-bs-dismiss="modal">
+                    <i class="bi bi-x-lg"></i>
+                </button>
+
+                <div class="modal-body">
+
+                    <div class="gallery-modal-slider" id="galleryModalSlider"></div>
+
+                    <div class="gallery-modal-info">
+                        <h4 id="galleryModalTitle"></h4>
+                        <div class="gallery-modal-rating" id="galleryModalRating"></div>
+                        <div class="gallery-modal-location" id="galleryModalLocation"></div>
+                        <p id="galleryModalDescription"></p>
+                        <div class="gallery-modal-price" id="galleryModalPrice"></div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
     <script src="/js/main.js"></script>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script src="/js/detail.js"></script>
 
 </body>
