@@ -1,3 +1,4 @@
+// click Cards Badges active State
 $(function () {
 
     $(".tab-btn").click(function () {
@@ -9,7 +10,6 @@ $(function () {
     });
 
 });
-
 
 $(function () {
 
@@ -64,85 +64,143 @@ $(function () {
 
 const tagIcons = {
     "National Parks": "bi-tree",
-    "State Parks": "bi-tree-fill",
-    "Local Parks": "bi-flower1",
-    "Wildlife Areas": "bi-binoculars",
-    "Nature Centre": "bi-flower2",
-    "Botanical Gardens": "bi-flower3",
     "Restaurant": "bi-cup-hot",
-    "Hiking Trails": "bi-signpost-split"
 };
 
-const destinationImages = [
-    "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&q=80",
-    "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=500&q=80",
-    "https://images.unsplash.com/photo-1519046904884-53103b34b206?w=500&q=80",
-    "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=500&q=80",
-    "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=500&q=80",
-    "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=500&q=80",
-    "https://images.unsplash.com/photo-1500534623283-312aade485b7?w=500&q=80",
-    "https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=500&q=80",
-    "https://images.unsplash.com/photo-1433086966358-54859d0ed716?w=500&q=80",
-    "https://images.unsplash.com/photo-1439066615861-d1af74d74000?w=500&q=80",
-    "https://images.unsplash.com/photo-1426604966848-d7adac402bff?w=500&q=80",
-    "https://images.unsplash.com/photo-1518173946687-a4c8892bbd9f?w=500&q=80"
-];
 
 const allTags = Object.keys(tagIcons);
 
-const spots = [
-    { title: "Atlantic City Your Way", city: "Brigantine", state: "NJ", lat: 39.36, lng: -74.42 },
-    { title: "Key West Sunshine Retreats", city: "Key West", state: "FL", lat: 24.56, lng: -81.78 },
-    { title: "Grandma Hayes Grocery & Camp", city: "Asheville", state: "NC", lat: 35.6, lng: -82.55 },
-    { title: "Lehrach's Lakeside Cabins", city: "Lake Tahoe", state: "CA", lat: 39.09, lng: -120.03 },
-    { title: "Terra Amory Campground", city: "Sedona", state: "AZ", lat: 34.87, lng: -111.76 },
-    { title: "Brookgrove Gardens Retreat", city: "Charleston", state: "SC", lat: 32.78, lng: -79.93 },
-    { title: "Hilton Head Island Getaways", city: "Hilton Head", state: "SC", lat: 32.22, lng: -80.75 },
-    { title: "Bay Grove Camping Resort", city: "Traverse City", state: "MI", lat: 44.76, lng: -85.62 },
-    { title: "Cape Cod Coastal Retreats", city: "Cape Cod", state: "MA", lat: 41.68, lng: -70.24 },
-    { title: "Lakeside Campground & Cabins", city: "Lake Placid", state: "NY", lat: 44.28, lng: -73.98 },
-    { title: "Redwood Ridge Retreat", city: "Eureka", state: "CA", lat: 40.8, lng: -124.16 },
-    { title: "Blue Ridge Mountain Lodge", city: "Asheville", state: "NC", lat: 35.59, lng: -82.55 },
-    { title: "Yellowstone Trailhead Cabins", city: "West Yellowstone", state: "MT", lat: 44.66, lng: -111.1 },
-    { title: "Desert Bloom RV Resort", city: "Sedona", state: "AZ", lat: 34.86, lng: -111.79 },
-    { title: "Emerald Coast Beach Houses", city: "Destin", state: "FL", lat: 30.39, lng: -86.5 },
-    { title: "Pine Hollow Family Campground", city: "Pocono", state: "PA", lat: 41.12, lng: -75.32 },
-    { title: "Sunset Cliffs Getaway", city: "San Diego", state: "CA", lat: 32.72, lng: -117.16 },
-    { title: "Smoky Mountain Trail Cabins", city: "Gatlinburg", state: "TN", lat: 35.71, lng: -83.51 },
-    { title: "Silver Lake Family Resort", city: "Traverse City", state: "MI", lat: 44.77, lng: -85.65 },
-    { title: "Great Basin Wilderness Camp", city: "Baker", state: "NV", lat: 38.92, lng: -114.2 },
-    { title: "Coastal Pines RV Park", city: "Savannah", state: "GA", lat: 32.08, lng: -81.09 },
-    { title: "Rocky Ridge Adventure Lodge", city: "Estes Park", state: "CO", lat: 40.38, lng: -105.52 },
-    { title: "Whispering Pines Retreat", city: "Lake George", state: "NY", lat: 43.42, lng: -73.71 },
-    { title: "Golden Valley Vineyard Stay", city: "Napa", state: "CA", lat: 38.3, lng: -122.29 },
-    { title: "Maplewood Family Campground", city: "Burlington", state: "VT", lat: 44.48, lng: -73.21 },
-    { title: "Ocean Breeze Coastal Cabins", city: "Outer Banks", state: "NC", lat: 35.58, lng: -75.47 },
-    { title: "Canyon View RV Resort", city: "Moab", state: "UT", lat: 38.57, lng: -109.55 },
-    { title: "Willow Creek Nature Retreat", city: "Jackson Hole", state: "WY", lat: 43.48, lng: -110.76 },
-    { title: "Harbor Point Getaway", city: "Bar Harbor", state: "ME", lat: 44.39, lng: -68.2 },
-    { title: "Sunrise Ridge Family Camp", city: "Flagstaff", state: "AZ", lat: 35.2, lng: -111.65 }
-];
 
+const spots = [
+  {
+    "id": 1,
+    "title": "Sunset Kayak Tour",
+    "category": "Outdoor",
+    "location": "Lake Tahoe, CA",
+    "price": 65,
+    "rating": 4.8,
+    "state": "NJ", "lat": 39.36, "lng": -74.42,
+    "description": "Paddle across calm waters as the sun sets behind the mountains. Includes gear, a certified guide, and light refreshments. Suitable for beginners.",
+    "images": [
+      "https://picsum.photos/id/1018/800/500",
+      "https://picsum.photos/id/1015/800/500",
+      "https://picsum.photos/id/1019/800/500",
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&q=80",
+    "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=500&q=80",
+    "https://images.unsplash.com/photo-1519046904884-53103b34b206?w=500&q=80",
+  
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Old Town Food Walk",
+    "category": "Food & Drink",
+    "location": "Savannah, GA",
+    "price": 49,
+    "rating": 4.9,
+    "state": "FL", "lat": 24.56, "lng": -81.78,
+    "description": "A guided 3-hour tasting tour through historic streets. Six stops, local specialties, and stories from a longtime resident guide.",
+    "images": [
+      "https://picsum.photos/id/292/800/500",
+      "https://picsum.photos/id/431/800/500",
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&q=80",
+    "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=500&q=80",
+    "https://images.unsplash.com/photo-1519046904884-53103b34b206?w=500&q=80",
+  
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Family Wildlife Safari",
+    "category": "Family",
+    "location": "San Diego, CA",
+    "price": 38,
+    "rating": 4.6,
+    "state": "NC", "lat": 35.6, "lng": -82.55,
+    "description": "An open-air ride through a 1,800-acre wildlife park. Great for kids, with up-close animal viewing and an onboard naturalist.",
+    "images": [
+      "https://picsum.photos/id/237/800/500",
+      "https://picsum.photos/id/433/800/500",
+      "https://picsum.photos/id/169/800/500",
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&q=80",
+    "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=500&q=80",
+    "https://images.unsplash.com/photo-1519046904884-53103b34b206?w=500&q=80",
+  
+    ]
+  },
+  {
+    "id": 4,
+    "title": "Historic City Bus Tour",
+    "category": "Tours",
+    "location": "Boston, MA",
+    "price": 30,
+    "rating": 4.3,
+    "state": "CA", "lat": 39.09, "lng": -120.03,
+    "description": "Hop-on hop-off tour covering 18 landmarks with live commentary. Tickets valid all day across all stops.",
+    "images": [
+      "https://picsum.photos/id/164/800/500",
+      "https://picsum.photos/id/180/800/500",
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&q=80",
+    "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=500&q=80",
+    "https://images.unsplash.com/photo-1519046904884-53103b34b206?w=500&q=80",
+  
+    ]
+  },
+  {
+    "id": 5,
+    "title": "Mountain Sunrise Hike",
+    "category": "Outdoor",
+    "location": "Boulder, CO",
+    "price": 25,
+    "rating": 4.7,
+    "state": "AZ", "lat": 34.87, "lng": -111.76,
+    "description": "A guided early-morning hike to a scenic ridge. Moderate difficulty, about 4 miles round trip. Coffee included at the summit.",
+    "images": [
+      "https://picsum.photos/id/1036/800/500",
+      "https://picsum.photos/id/1037/800/500",
+      "https://picsum.photos/id/1039/800/500",
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&q=80",
+    "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=500&q=80",
+    "https://images.unsplash.com/photo-1519046904884-53103b34b206?w=500&q=80",
+  
+    ]
+  },
+  {
+    "id": 6,
+    "title": "Craft Brewery Tasting",
+    "category": "Food & Drink",
+    "location": "Portland, OR",
+    "price": 55,
+    "rating": 4.5,
+    "state": "SC", "lat": 32.78, "lng": -79.93,
+    "description": "Sample flights from four award-winning local breweries with a guide who knows the scene. Includes transport between locations.",
+    "images": [
+      "https://picsum.photos/id/225/800/500",
+      "https://picsum.photos/id/431/800/500",
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&q=80",
+    "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=500&q=80",
+    "https://images.unsplash.com/photo-1519046904884-53103b34b206?w=500&q=80",
+  
+    ]
+  }
+]
+
+// map all destination 
 const destinations = spots.map((spot, i) => ({
     id: i + 1,
     title: spot.title,
-    address: `PO Box ${300 + i}, ${spot.city}, ${spot.state}`,
-    description: `${spot.title} helps you find the perfect ${spot.city} getaway, with trusted service and well-maintained vacation rentals since 1995. Choose from cozy cabins to full-size lodges.`,
-    price: 100 + (i * 7) % 200,
-    rating: (4.2 + (i % 6) * 0.1).toFixed(1),
-    reviews: 80 + (i * 13) % 150,
+    category: spot.category,
+    address: spot.location,
+    description: spot.description,
+    price: spot.price,
+    rating: spot.rating,
+    reviews: `${Math.floor(Math.random() * 491) + 10}`,
     phone: `(${200 + (i * 11) % 700}) 555-${String(1000 + (i * 37) % 9000).slice(0, 4)}`,
     email: `info@${spot.title.toLowerCase().replace(/[^a-z0-9]+/g, "")}.com`,
     website: `www.${spot.title.toLowerCase().replace(/[^a-z0-9]+/g, "")}.com`,
-    image: destinationImages[i % destinationImages.length],
-    gallery: [
-        destinationImages[i % destinationImages.length],
-        destinationImages[(i + 4) % destinationImages.length],
-        destinationImages[(i + 8) % destinationImages.length],
-        destinationImages[(i + 2) % destinationImages.length],
-        destinationImages[(i + 6) % destinationImages.length]
-    ],
-    tags: [allTags[i % allTags.length], allTags[(i + 3) % allTags.length]],
+    image: spot.images[0],
+    gallery: spot.images,
+    tags: allTags,
     lat: spot.lat,
     lng: spot.lng
 }));
@@ -261,7 +319,8 @@ $(document).on("click", ".page-btn:not(.disabled)", function () {
 
 });
 
-/* detail modal */
+
+/* detail modal of things to do page */
 
 function openDetailModal(place) {
 
@@ -270,7 +329,7 @@ function openDetailModal(place) {
     $("#detailGallery").html(`
         <div class="gallery-main"><img src="${gallery[0]}" alt="${place.title}"></div>
         <div class="gallery-sub"><img src="${gallery[1]}" alt="${place.title}"></div>
-        <div class="gallery-sub"><img src="${gallery[2]}" alt="${place.title}"></div>
+        <div class="gallery-sub"><img src="${gallery[2] || gallery[0]}" alt="${place.title}"></div>
     `);
 
     $("#detailTitle").text(place.title);
