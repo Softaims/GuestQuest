@@ -106,7 +106,7 @@ $(function () {
 
         currentPage = 1;
 
-        renderCards();
+        renderCardsWithLoading();
 
     });
 
@@ -322,19 +322,78 @@ function currentPageItems() {
     return filtered.slice(start, start + ITEMS_PER_PAGE);
 }
 
+function emptyStateHTML() {
+
+    return `
+    <div class="empty-state">
+        <i class="bi bi-search"></i>
+        <h5>No results found</h5>
+        <p>Try a different category or search term.</p>
+    </div>`;
+
+}
+
+function loadingSkeletonHTML() {
+
+    return Array.from({ length: 4 }).map(() => `
+    <div class="destination-card skeleton-card">
+        <div class="card-image skeleton-block"></div>
+        <div class="card-content">
+            <div class="skeleton-line skeleton-line-title"></div>
+            <div class="skeleton-line skeleton-line-sm"></div>
+            <div class="skeleton-line"></div>
+        </div>
+    </div>`).join("");
+
+}
+
 function renderCards() {
 
+    const filtered = getFilteredDestinations();
     const items = currentPageItems();
+
+    if (filtered.length === 0) {
+
+        $("#resultsContainer")
+            .removeClass("results-grid")
+            .addClass("results-list")
+            .html(emptyStateHTML());
+
+        $("#resultCount").text(0);
+
+        renderPagination();
+        renderMapMarkers([]);
+
+        return;
+
+    }
 
     $("#resultsContainer")
         .removeClass("results-list results-grid")
         .addClass(currentView === "grid" ? "results-grid" : "results-list")
         .html(items.map(place => cardHTML(place)).join(""));
 
-    $("#resultCount").text(destinations.length);
+    $("#resultCount").text(filtered.length);
 
     renderPagination();
     renderMapMarkers(items);
+}
+
+function showLoadingState() {
+
+    $("#resultsContainer")
+        .removeClass("results-grid")
+        .addClass("results-list")
+        .html(loadingSkeletonHTML());
+
+}
+
+function renderCardsWithLoading() {
+
+    showLoadingState();
+
+    setTimeout(renderCards, 350);
+
 }
 
 /* pagination */
