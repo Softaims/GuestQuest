@@ -498,13 +498,9 @@ a {
 }
 
 
-.things-search-wrapper .search-tabs {
-
-    display: flex;
-}
 
 .things-search-wrapper .search-tab {
-    width: 50%;
+    width: 100%;
     height: 48px;
     border: 1px solid #ececec;
     background: #fff;
