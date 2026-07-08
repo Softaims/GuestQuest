@@ -117,10 +117,10 @@ $(function () {
 const tagIcons = {
     "National Parks": "bi-tree",
     "Restaurant": "bi-cup-hot",
+    "Local Parks": "bi-tree",
+    "Wildlife Areas": "bi-bug",
+    "Hiking Trails": "bi-signpost-2",
 };
-
-
-const allTags = Object.keys(tagIcons);
 
 
 const spots = [
@@ -128,6 +128,7 @@ const spots = [
     "id": 1,
     "title": "Sunset Kayak Tour",
     "category": "Outdoor",
+    "tags": ["National Parks", "Local Parks"],
     "location": "Lake Tahoe, CA",
     "price": 65,
     "rating": 4.8,
@@ -147,6 +148,7 @@ const spots = [
     "id": 2,
     "title": "Old Town Food Walk",
     "category": "Food & Drink",
+    "tags": ["Restaurant"],
     "location": "Savannah, GA",
     "price": 49,
     "rating": 4.9,
@@ -165,6 +167,7 @@ const spots = [
     "id": 3,
     "title": "Family Wildlife Safari",
     "category": "Family",
+    "tags": ["Wildlife Areas", "National Parks"],
     "location": "San Diego, CA",
     "price": 38,
     "rating": 4.6,
@@ -184,6 +187,7 @@ const spots = [
     "id": 4,
     "title": "Historic City Bus Tour",
     "category": "Tours",
+    "tags": ["Local Parks"],
     "location": "Boston, MA",
     "price": 30,
     "rating": 4.3,
@@ -202,6 +206,7 @@ const spots = [
     "id": 5,
     "title": "Mountain Sunrise Hike",
     "category": "Outdoor",
+    "tags": ["Hiking Trails", "National Parks"],
     "location": "Boulder, CO",
     "price": 25,
     "rating": 4.7,
@@ -221,6 +226,7 @@ const spots = [
     "id": 6,
     "title": "Craft Brewery Tasting",
     "category": "Food & Drink",
+    "tags": ["Restaurant"],
     "location": "Portland, OR",
     "price": 55,
     "rating": 4.5,
@@ -252,7 +258,7 @@ const destinations = spots.map((spot, i) => ({
     website: `www.${spot.title.toLowerCase().replace(/[^a-z0-9]+/g, "")}.com`,
     image: spot.images[0],
     gallery: spot.images,
-    tags: allTags,
+    tags: spot.tags || [],
     lat: spot.lat,
     lng: spot.lng
 }));
@@ -305,7 +311,8 @@ function getFilteredDestinations() {
     return destinations.filter((d) => {
 
         const matchesCategory = !activeCategory
-            || (d.category || "").toLowerCase() === activeCategory.toLowerCase();
+            || (d.category || "").toLowerCase() === activeCategory.toLowerCase()
+            || (d.tags || []).some(t => t.toLowerCase() === activeCategory.toLowerCase());
 
         const matchesSearch = !searchQuery
             || d.title.toLowerCase().includes(searchQuery.toLowerCase());
