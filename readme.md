@@ -23,4 +23,3 @@ A simple, responsive "Things to Do" listings page built with **HTML, CSS, JavaSc
 - Backend/API integration
 
 **Development Time:** ~3–4 hours
-```
