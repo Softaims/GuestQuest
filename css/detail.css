@@ -629,12 +629,17 @@
     flex: 0 0 100%;
     max-width: 100%;
     width: 100%;
+
 }
 
 .gallery-slide img {
     width: 100%;
-    height: 620px;
-    object-fit: contain;
+    height: 700px;
+    padding: 0;
+    object-fit: cover;
+}
+.slick-dotted.slick-slider{
+    margin-bottom: 0px !important;
 }
 
 .gallery-modal-slider .slick-prev,
