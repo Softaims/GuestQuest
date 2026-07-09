@@ -243,98 +243,6 @@
     font-size: 17px;
 }
 
-/* responsive */
-
-@media(max-width:1200px) {
-
-    .card-image {
-        width: 150px;
-        min-width: 150px;
-        height: 120px;
-    }
-
-}
-
-@media(max-width:991px) {
-
-    .destination-card {
-        flex-direction: row;
-    }
-
-    .results-grid {
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .results-header {
-        flex-direction: column;
-        gap: 16px;
-        align-items: flex-start;
-    }
-
-}
-
-@media(max-width:576px) {
-
-    .results-section {
-        padding-top: 34px;
-        padding-bottom: 52px;
-    }
-
-    .results-header {
-        gap: 14px;
-        margin-bottom: 22px;
-    }
-
-    .results-count h5 {
-        font-size: 18px;
-        line-height: 1.25;
-    }
-
-    .view-btn {
-        width: 40px;
-        height: 40px;
-    }
-
-    .destination-card {
-        flex-direction: column;
-        padding: 14px;
-        border-radius: 18px;
-    }
-
-    .card-image {
-        width: 100%;
-        min-width: 100%;
-        height: 180px;
-    }
-
-    .results-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .card-content h3 {
-        font-size: 16px;
-    }
-
-    .card-tags {
-        gap: 6px;
-    }
-
-    .card-tags span {
-        font-size: 11px;
-        padding: 5px 10px;
-    }
-
-    .pagination-wrapper {
-        margin-top: 28px;
-        gap: 6px;
-    }
-
-    .map-wrapper {
-        height: 360px;
-        border-radius: 18px;
-    }
-
-}
 
 /* pagination */
 
@@ -387,34 +295,16 @@
     font-weight: 600;
 }
 
-@media(max-width:576px) {
 
-    .page-btn {
-        min-width: 34px;
-        height: 34px;
-        font-size: 13px;
-    }
-
-    .page-dots {
-        width: 20px;
-    }
-
-}
 
 .map-wrapper {
 
     position: sticky;
-
-    top: 110px;
-
-    height: 760px;
-
+    top: 50px;
+    height: 460px;
     border-radius: 24px;
-
     overflow: hidden;
-
     border: 1px solid #ECECEC;
-
     box-shadow: 0 20px 60px rgba(0, 0, 0, .08);
 
 }
@@ -425,17 +315,13 @@
 }
 
 #map {
-
     width: 100%;
-
-    height: 100%;
+   height: 100%;
 
 }
 
 .leaflet-popup-content {
-
     margin: 12px;
-
 }
 
 .leaflet-popup-content-wrapper {

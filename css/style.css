@@ -25,7 +25,7 @@ img {
 }
 
 a {
-    text-decoration: none;
+    text-decoration: none !important;
     color: inherit;
 }
 
@@ -519,7 +519,13 @@ a {
 
 }
 
+.things-search-wrapper .search-tabs {
 
+    width: 80%;
+    margin: 0 auto;
+    
+
+}
 
 .things-search-wrapper .search-tab {
     width: 100%;
@@ -1101,9 +1107,9 @@ LIST
 
     .hero-things-to-do h1 {
 
-        font-size: 22px;
+        font-size: 18px;
         padding-top: 30px;
-        margin-bottom: 24px;
+        margin-bottom: 30px;
 
     }
 
@@ -1114,18 +1120,20 @@ LIST
 
     }
 
-    .search-tabs {
+    .things-search-wrapper .search-tabs {
 
-        width: 100%;
-        flex-wrap: wrap;
+        width: 90%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
 
     }
 
     .search-tab {
 
-        flex: 1 1 50%;
+        width: 100%;
         font-size: 12px;
         padding: 0 10px;
+        border-radius: 0;
 
     }
 
@@ -1144,7 +1152,7 @@ LIST
 
     .things-search-btn {
 
-        width: fit-content;
+        width: 100%;
 
     }
 
