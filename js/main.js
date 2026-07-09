@@ -1,3 +1,79 @@
+/* homepage search suggestions */
+
+function searchSuggestionHTML(place) {
+
+    return `
+    <div class="search-suggestion-item" data-id="${place.id}">
+        <i class="bi bi-geo-alt-fill"></i>
+        <div>
+            <div class="search-suggestion-title">${place.title}</div>
+            <div class="search-suggestion-location">${place.address}</div>
+        </div>
+    </div>`;
+
+}
+
+let homeSearchDebounceTimer = null;
+
+$(document).on("input", "#homeSearchInput", function () {
+
+    const value = $(this).val().trim();
+    const $suggestions = $("#homeSearchSuggestions");
+
+    clearTimeout(homeSearchDebounceTimer);
+
+    if (!value) {
+        $suggestions.removeClass("show").empty();
+        return;
+    }
+
+    homeSearchDebounceTimer = setTimeout(() => {
+
+        const query = value.toLowerCase();
+
+        const matches = destinations.filter(d =>
+            d.title.toLowerCase().includes(query) || d.address.toLowerCase().includes(query)
+        ).slice(0, 6);
+
+        const viewAllHTML = `
+            <a class="search-suggestion-viewall" href="/pages/things-to-do.html?q=${encodeURIComponent(value)}">
+                View all in Things to do
+                <i class="bi bi-arrow-right"></i>
+            </a>`;
+
+        if (matches.length === 0) {
+            $suggestions.addClass("show").html(`<div class="search-suggestion-empty">No matching places found</div>` + viewAllHTML);
+        } else {
+            $suggestions.addClass("show").html(matches.map(searchSuggestionHTML).join("") + viewAllHTML);
+        }
+
+    }, 200);
+
+});
+
+$(document).on("click", ".search-suggestion-item", function () {
+
+    const id = parseInt($(this).data("id"));
+    window.location.href = `/pages/destination-detail.html?id=${id}`;
+
+});
+
+$(document).on("keydown", "#homeSearchInput", function (e) {
+
+    if (e.key === "Escape") {
+        $("#homeSearchSuggestions").removeClass("show").empty();
+    }
+
+});
+
+$(document).on("click", function (e) {
+
+    if (!$(e.target).closest("#homeSearchInput, #homeSearchSuggestions").length) {
+        $("#homeSearchSuggestions").removeClass("show").empty();
+    }
+
+});
+
 // click Cards Badges active State
 $(function () {
 
@@ -435,81 +511,7 @@ $(document).on("input", "#titleSearchInput", function () {
 
 });
 
-/* homepage search suggestions */
 
-function searchSuggestionHTML(place) {
-
-    return `
-    <div class="search-suggestion-item" data-id="${place.id}">
-        <i class="bi bi-geo-alt-fill"></i>
-        <div>
-            <div class="search-suggestion-title">${place.title}</div>
-            <div class="search-suggestion-location">${place.address}</div>
-        </div>
-    </div>`;
-
-}
-
-let homeSearchDebounceTimer = null;
-
-$(document).on("input", "#homeSearchInput", function () {
-
-    const value = $(this).val().trim();
-    const $suggestions = $("#homeSearchSuggestions");
-
-    clearTimeout(homeSearchDebounceTimer);
-
-    if (!value) {
-        $suggestions.removeClass("show").empty();
-        return;
-    }
-
-    homeSearchDebounceTimer = setTimeout(() => {
-
-        const query = value.toLowerCase();
-
-        const matches = destinations.filter(d =>
-            d.title.toLowerCase().includes(query) || d.address.toLowerCase().includes(query)
-        ).slice(0, 6);
-
-        const viewAllHTML = `
-            <a class="search-suggestion-viewall" href="/pages/things-to-do.html?q=${encodeURIComponent(value)}">
-                View all in Things to do
-                <i class="bi bi-arrow-right"></i>
-            </a>`;
-
-        if (matches.length === 0) {
-            $suggestions.addClass("show").html(`<div class="search-suggestion-empty">No matching places found</div>` + viewAllHTML);
-        } else {
-            $suggestions.addClass("show").html(matches.map(searchSuggestionHTML).join("") + viewAllHTML);
-        }
-
-    }, 200);
-
-});
-
-$(document).on("click", ".search-suggestion-item", function () {
-
-    const id = parseInt($(this).data("id"));
-    window.location.href = `/pages/destination-detail.html?id=${id}`;
-
-});
-
-$(document).on("keydown", "#homeSearchInput", function (e) {
-
-    if (e.key === "Escape") {
-        $("#homeSearchSuggestions").removeClass("show").empty();
-    }
-
-});
-
-$(document).on("click", function (e) {
-
-    if (!$(e.target).closest("#homeSearchInput, #homeSearchSuggestions").length) {
-        $("#homeSearchSuggestions").removeClass("show").empty();
-    }
-
-});
 
 /* pre-fill title search on things-to-do page from ?q= (e.g. homepage "View all" link) */
 
