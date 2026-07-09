@@ -143,7 +143,6 @@
     }
 
     .hero-search .search-tabs {
-        display: flex;
         flex-direction: column;
     }
 
